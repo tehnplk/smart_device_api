@@ -4,7 +4,7 @@ var router = express.Router();
 var knex = require('./con_db');
 
 router.get('/', function(req, res, next) {
-  res.render('bmi', { title: 'BP' });
+  res.render('bp', { title: 'BP' });
 });
 
 router.post('/add_log',async function(req,res,next){
