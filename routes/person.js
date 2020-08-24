@@ -47,7 +47,7 @@ router.get('/get_person_by_cid/:cid', async function(req,res ,next){
       'vn':'',
       'hn':'',
       'cid':cid,
-      'fullname':''
+      'fullname':'ไม่พบรายชื่อ'
     });
   }
  
