@@ -4,7 +4,7 @@ var router = express.Router();
 var knex = require('./con_db');
 
 
-router.get('/get_person_from_vn/:vn', async function(req,res ,next){
+router.get('/get_person_by_vn/:vn', async function(req,res ,next){
   let vn = req.params.vn;
   let sql = ` SELECT p.hn ,p.cid ,CONCAT(p.pname,p.fname,' ',p.lname) as fullname  
   FROM ovst o INNER JOIN patient p ON p.hn = o.hn WHERE o.vn =? limit 1  `;
@@ -28,7 +28,7 @@ router.get('/get_person_from_vn/:vn', async function(req,res ,next){
  
 });
 
-router.get('/get_person_from_cid/:cid', async function(req,res ,next){
+router.get('/get_person_by_cid/:cid', async function(req,res ,next){
   let cid = req.params.cid;
   let sql = ` SELECT o.vn,p.hn ,p.cid ,CONCAT(p.pname,p.fname,' ',p.lname) as fullname 
   FROM ovst o INNER JOIN patient p ON p.hn = o.hn WHERE p.cid =?
