@@ -33,17 +33,16 @@ router.post('/update_opdscreen',async function(req,res,next){
   let height = req.body.height;
   let bmi = req.body.bmi;
 
-  let id = await knex('opdscreen')
+  let effect = await knex('opdscreen')
   .where('vn', '=', vn)
   .update({
     bw:bw,
     height:height,
     bmi:bmi
   })
-  console.log(id);
 
   res.json({
-    'id':id[0]
+    'effect':effect
   })
 });
 
