@@ -22,7 +22,7 @@ router.get('/get_person_by_vn/:vn', async function(req,res ,next){
       'vn':vn,
       'hn':'',
       'cid':'',
-      'fullname':''
+      'fullname':'ไม่พบรายชื่อ'
     });
   }
  
