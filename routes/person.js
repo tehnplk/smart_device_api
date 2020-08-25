@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var knex = require('./con_db');
+var knex = require('../con_db');
 
 
 router.get('/get_person_by_vn/:vn', async function(req,res ,next){
