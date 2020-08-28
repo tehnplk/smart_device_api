@@ -3,11 +3,13 @@ var router = express.Router();
 
 var knex = require('../con_db');
 
-router.get('/', function(req, res, next) {
-  res.render('bp', { title: 'BP' });
+router.get('/', function (req, res, next) {
+  res.render('bp', {
+    title: 'BP'
+  });
 });
 
-router.post('/add_log',async function(req,res,next){
+router.post('/add_log', async function (req, res, next) {
 
   let vn = req.body.vn;
   let cid = req.body.cid;
@@ -24,13 +26,26 @@ router.post('/add_log',async function(req,res,next){
   console.log(d_update)
 
   var id = await knex('smart_gate_bp')
-  .insert({id:null,vn:vn,cid:cid,bps:bps,bpd:bpd,pulse:pulse,hn:hn,fullname:fullname,d_update:d_update,note1:note1,note2:note2,note3:note3})
+    .insert({
+      id: null,
+      vn: vn,
+      cid: cid,
+      bps: bps,
+      bpd: bpd,
+      pulse: pulse,
+      hn: hn,
+      fullname: fullname,
+      d_update: d_update,
+      note1: note1,
+      note2: note2,
+      note3: note3
+    })
   res.json({
-    'id':id[0]
+    'id': id[0]
   })
 });
 
-router.post('/update_opdscreen',async function(req,res,next){
+router.post('/update_opdscreen', async function (req, res, next) {
 
   let vn = req.body.vn;
   let bps = req.body.bps;
@@ -38,21 +53,21 @@ router.post('/update_opdscreen',async function(req,res,next){
   let pulse = req.body.pulse;
 
   let effect = await knex('opdscreen')
-  .where('vn', '=', vn)
-  .update({
-      bps:bps,
-      bpd:bpd,
-      pulse:pulse
-  })
+    .where('vn', '=', vn)
+    .update({
+      bps: bps,
+      bpd: bpd,
+      pulse: pulse
+    })
 
   res.json({
-    'effect':effect
+    'effect': effect
   })
 });
 
-router.post('/add_opdscreen_bp',async function(req,res,next){
+router.post('/add_opdscreen_bp', async function (req, res, next) {
 
-  let vn = req.body.vn;  
+  let vn = req.body.vn;
   let bps = req.body.bps;
   let bpd = req.body.bpd;
   let pulse = req.body.pulse;
@@ -63,16 +78,16 @@ router.post('/add_opdscreen_bp',async function(req,res,next){
   ,vn =? ,bps=? ,bpd=? ,pulse=? ,depcode=? ,staff=? 
   ,screen_date = CURRENT_DATE,screen_time = CURRENT_TIME ,rr=0,o2sat=0,temperature=0 `;
   try {
-    let data = await knex.raw(sql,[vn,bps,bpd,pulse,depcode,staff]);
+    let data = await knex.raw(sql, [vn, bps, bpd, pulse, depcode, staff]);
     res.json({
-      'opdscreen_bp':'added'
+      'opdscreen_bp': 'added'
     });
   } catch (error) {
     res.json({
-      'opdscreen_bp':'error'
+      'opdscreen_bp': 'error'
     });
   }
-  
+
 
 });
 
