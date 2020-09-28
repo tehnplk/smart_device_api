@@ -7,6 +7,7 @@ router.get('/', function(req, res, next) {
   res.render('bmi', { title: 'BMI' });
 });
 
+
 router.post('/add_log',async function(req,res,next){
 
   let vn = req.body.vn;
