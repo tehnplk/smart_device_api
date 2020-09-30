@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/test',async function(req,res){
-  let sql = ` select * from public.smart_gate_bp `;
+  let sql = ` select * from smart_gate_bp `;
   let data = await knex.raw(sql);
   res.end(data)
 });
