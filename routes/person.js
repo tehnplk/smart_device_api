@@ -18,8 +18,8 @@ router.get('/get_person_by_vn/:vn', async function (req, res, next) {
   } catch (error) {
     res.json({
       'vn': vn,
-      'hn': '',
-      'cid': '',
+      'hn': '0000000',
+      'cid': '0000000000000',
       'fullname': 'ไม่พบรายชื่อ'
     });
   }
@@ -42,8 +42,8 @@ router.get('/get_person_by_cid/:cid', async function (req, res, next) {
     })
   } catch (error) {
     res.json({
-      'vn': '',
-      'hn': '',
+      'vn': '000000000000',
+      'hn': '0000000',
       'cid': cid,
       'fullname': 'ไม่พบรายชื่อ'
     });
