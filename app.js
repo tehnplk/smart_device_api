@@ -9,6 +9,7 @@ var usersRouter = require('./routes/users');
 var personRouter = require('./routes/person');
 var bmiRouter = require('./routes/bmi');
 var bpRouter = require('./routes/bp');
+var tpRouter = require('./routes/tp')
 
 var app = express();
 
@@ -27,6 +28,7 @@ app.use('/users', usersRouter);
 app.use('/person',personRouter);
 app.use('/bmi' ,bmiRouter);
 app.use('/bp' ,bpRouter);
+app.use('/tp',tpRouter)
 
 
 // catch 404 and forward to error handler
