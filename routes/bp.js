@@ -20,7 +20,7 @@ router.post('/add_log', async function (req, res, next) {
   let fullname = req.body.fullname;
   let note1 = req.body.note1;
   let note2 = req.body.note2;
-  let note3 = '-';
+  let note3 = req.body.note3;
 
   d_update = new Date();
   console.log(d_update)
