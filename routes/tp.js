@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
 router.post('/add_log',async function(req,res,next){
 
   res.json({
-    'tp':'log'
+    'effect':effect
   })
 });
 
