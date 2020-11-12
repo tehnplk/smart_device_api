@@ -3,12 +3,14 @@ var router = express.Router();
 
 var knex = require('../con_db');
 
-router.get('/', function(req, res, next) {
-  res.render('bmi', { title: 'BMI' });
+router.get('/', function (req, res, next) {
+  res.render('bmi', {
+    title: 'BMI'
+  });
 });
 
 
-router.post('/add_log',async function(req,res,next){
+router.post('/add_log', async function (req, res, next) {
 
   let vn = req.body.vn;
   let cid = req.body.cid;
@@ -25,13 +27,26 @@ router.post('/add_log',async function(req,res,next){
   console.log(d_update)
 
   var id = await knex('smart_gate_bmi')
-  .insert({id:null,vn:vn,cid:cid,bw:bw,bh:bh,bmi:bmi,hn:hn,fullname:fullname,d_update:d_update,note1:note1,note2:note2,note3:note3})
+    .insert({
+      id: null,
+      vn: vn,
+      cid: cid,
+      bw: bw,
+      bh: bh,
+      bmi: bmi,
+      hn: hn,
+      fullname: fullname,
+      d_update: d_update,
+      note1: note1,
+      note2: note2,
+      note3: note3
+    })
   res.json({
-    'id':id[0]
+    'id': id[0]
   })
 });
 
-router.post('/update_opdscreen',async function(req,res,next){
+router.post('/update_opdscreen', async function (req, res, next) {
 
   let vn = req.body.vn;
   let bw = req.body.bw;
@@ -39,15 +54,15 @@ router.post('/update_opdscreen',async function(req,res,next){
   let bmi = req.body.bmi;
 
   let effect = await knex('opdscreen')
-  .where('vn', '=', vn)
-  .update({
-    bw:bw,
-    height:height,
-    bmi:bmi
-  })
+    .where('vn', '=', vn)
+    .update({
+      bw: bw,
+      height: height,
+      bmi: bmi
+    })
 
   res.json({
-    'effect':effect
+    'effect': effect
   })
 });
 
