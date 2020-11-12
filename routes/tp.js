@@ -24,7 +24,7 @@ router.post('/add_log', async function (req, res, next) {
   d_update = new Date();
   console.log(d_update)
 
-  var id = await knex('smart_gate_bmi')
+  var id = await knex('smart_gate_tp')
     .insert({
       id: null,
       vn: vn,
