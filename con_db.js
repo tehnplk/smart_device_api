@@ -5,7 +5,7 @@ var knex = require("knex")({
         port: 3306,
         user: "root",
         password: "112233",
-        database: "his"
+        database: "hos"
     },
     pool: {
         afterCreate: (conn, done) => {
