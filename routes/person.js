@@ -28,21 +28,18 @@ router.get('/get_person_by_vn/:vn', async function (req, res, next) {
 
 router.get('/get_person_by_cid/:cid', async function (req, res, next) {
   let cid = req.params.cid;
-  let sql = ` SELECT o.vn,p.hn ,p.cid ,CONCAT(p.pname,p.fname,' ',p.lname) as fullname 
-  FROM ovst o INNER JOIN patient p ON p.hn = o.hn WHERE p.cid =?
-  AND o.vstdate = CURDATE() ORDER BY o.vn DESC LIMIT 1 `;
+  let sql = ` SELECT p.hn ,p.cid ,CONCAT(p.pname,p.fname,' ',p.lname) as fullname 
+  from patient p where p.cid = ? `;
   let data = await knex.raw(sql, [cid]);
 
   try {
     res.json({
-      'vn': data[0][0].vn,
       'hn': data[0][0].hn,
       'cid': cid,
       'fullname': data[0][0].fullname
     })
   } catch (error) {
     res.json({
-      'vn': '0',
       'hn': '0',
       'cid': cid,
       'fullname': 'ไม่พบรายชื่อ'
