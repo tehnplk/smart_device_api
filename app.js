@@ -11,6 +11,7 @@ var bmiRouter = require('./routes/bmi');
 var bpRouter = require('./routes/bp');
 var tpRouter = require('./routes/tp')
 
+var version = require('./version')
 var app = express();
 
 // view engine setup
@@ -46,5 +47,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+console.log(`App is running on version ${version.version()}`);
 
 module.exports = app;
