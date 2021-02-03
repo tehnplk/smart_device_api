@@ -71,7 +71,7 @@ router.get('/get_person_by_hn/:hn', async function (req, res, next) {
 router.get('/get_vn_by_cid/:cid', async function (req, res, next) {
   let cid = req.params.cid;
   let sql = ` select o.vn  from ovst o  left join patient p on p.hn = o.hn
-  where p.cid=? and vstdate = curdate() order by vsttime desc limit 1 `;
+  where p.cid=? and vstdate = CURRENT_DATE order by vsttime desc limit 1 `;
   let data = await knex.raw(sql, [cid]);
 
   try {
