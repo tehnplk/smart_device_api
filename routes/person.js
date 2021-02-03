@@ -46,23 +46,18 @@ router.get('/get_person_by_cid/:cid', async function (req, res, next) {
 
 });
 
-router.get('/get_person_by_hn/:hn', async function (req, res, next) {
+router.get('/get_cid_by_hn/:hn', async function (req, res, next) {
   let hn = req.params.hn;
-  let sql = ` SELECT p.hn ,p.cid ,CONCAT(p.pname,p.fname,' ',p.lname) as fullname 
-  from patient p where p.hn = ? `;
+  let sql = ` SELECT p.cid  from patient p where p.hn = ? `;
   let data = await knex.raw(sql, [hn]);
 
   try {
     res.json({
-      'hn': data[0][0].hn,
-      'cid': data[0][0].cid,
-      'fullname': data[0][0].fullname
+      'cid': data[0][0].cid
     })
   } catch (error) {
     res.json({
-      'hn': '0',
-      'cid': '0',
-      'fullname': 'ไม่พบรายชื่อ'
+      'cid': '0'
     });
   }
 
@@ -85,8 +80,6 @@ router.get('/get_vn_by_cid/:cid', async function (req, res, next) {
   }
 
 });
-
-
 
 
 module.exports = router;
