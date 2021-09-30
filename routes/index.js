@@ -12,7 +12,9 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/test', async function (req, res) {
+
   let sql = ` select * from opdscreen order by vstdate desc , vsttime desc limit 1 `;
+  console.log('test', sql);
   let data = await knex.raw(sql);
   res.json({
     'vn': data[0][0].vn,

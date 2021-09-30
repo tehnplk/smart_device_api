@@ -3,10 +3,11 @@ var router = express.Router();
 var knex = require('../con_db');
 
 router.get('/get_person_by_vn/:vn', async function (req, res, next) {
+  console.log(req.params);
   let vn = req.params.vn;
   let sql = ` SELECT p.hn ,p.cid ,CONCAT(p.pname,p.fname,' ',p.lname) as fullname  
   FROM ovst o INNER JOIN patient p ON p.hn = o.hn WHERE  o.vn =? limit 1  `;
-  let data = await knex.raw(sql, [vn]);  
+  let data = await knex.raw(sql, [vn]);
   try {
     res.json({
       'hn': data[0][0].hn,
@@ -24,6 +25,7 @@ router.get('/get_person_by_vn/:vn', async function (req, res, next) {
 });
 
 router.get('/get_person_by_cid/:cid', async function (req, res, next) {
+  console.log(req.params);
   let cid = req.params.cid;
   let sql = ` SELECT p.hn ,p.cid ,CONCAT(p.pname,p.fname,' ',p.lname) as fullname 
   from patient p where p.cid = ? `;
@@ -46,6 +48,7 @@ router.get('/get_person_by_cid/:cid', async function (req, res, next) {
 });
 
 router.get('/get_cid_by_hn/:hn', async function (req, res, next) {
+  console.log(req.params);
   let hn = req.params.hn;
   let sql = ` SELECT p.cid  from patient p where p.hn = ? `;
   let data = await knex.raw(sql, [hn]);
@@ -63,6 +66,7 @@ router.get('/get_cid_by_hn/:hn', async function (req, res, next) {
 });
 
 router.get('/get_vn_by_cid/:cid', async function (req, res, next) {
+  console.log(req.params);
   let cid = req.params.cid;
   let sql = ` select o.vn  from ovst o  left join patient p on p.hn = o.hn
   where p.cid=? and vstdate = CURRENT_DATE order by vsttime desc limit 1 `;
